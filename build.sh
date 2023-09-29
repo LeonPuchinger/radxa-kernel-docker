@@ -18,10 +18,15 @@ echo "fetching build sources and toolchain..."
 git clone --depth 1 -b ${KERNEL_VERSION} https://github.com/radxa/kernel.git
 git clone --depth 1 -b master https://github.com/radxa/rkbin.git
 git clone --depth 1 -b debian https://github.com/radxa/build.git
-curl -o gcc-arm-x86_64-aarch64-none-linux-gnu.tar.gz https://dl.radxa.com/tools/linux/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.gz
-tar zxvf gcc-arm-x86_64-aarch64-none-linux-gnu.tar.gz -C /usr/local/
+curl -L -o gcc-arm-x86_64-aarch64-none-linux-gnu.tar.gz https://dl.radxa.com/tools/linux/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.gz
+curl -L -o gcc-linaro-x86_64_aarch64-linux-gnu.tar.xz https://releases.linaro.org/components/toolchain/binaries/7.3-2018.05/aarch64-linux-gnu/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
+tar zxf gcc-arm-x86_64-aarch64-none-linux-gnu.tar.gz -C /usr/local/
 cd /usr/local/
-export PATH="$(find . -name aarch64-none-linux-gnu-ld -type f -print0 | xargs -0 dirname | head -n 1 | xargs -0 realpath -z):$PATH"
+export PATH="$(find . -name aarch64-none-linux-gnu-ld -type f -print0 | xargs -0 dirname | head -n 1 | xargs -0 realpath):$PATH"
+cd -
+tar xJf gcc-linaro-x86_64_aarch64-linux-gnu.tar.xz -C /usr/local/
+cd /usr/local/
+export PATH="$(find . -name aarch64-linux-gnu-ld -type f -print0 | xargs -0 dirname | head -n 1 | xargs -0 realpath):$PATH"
 cd -
 
 echo "starting kernel build..."
