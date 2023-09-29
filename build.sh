@@ -12,9 +12,9 @@ if [[ -z $DEVICE ]]; then
     echo "Set the DEVICE environment variable to use a different one."
 fi
 
-git clone -b ${KERNEL_VERSION} https://github.com/radxa/kernel.git
-git clone -b master https://github.com/radxa/rkbin.git
-git clone -b debian https://github.com/radxa/build.git
+git clone --depth 1 -b ${KERNEL_VERSION} https://github.com/radxa/kernel.git
+git clone --depth 1 -b master https://github.com/radxa/rkbin.git
+git clone --depth 1 -b debian https://github.com/radxa/build.git
 
 echo "starting kernel build..."
 ./build/mk-kernel.sh ${DEVICE}
