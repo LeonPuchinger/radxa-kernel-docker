@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ -z $KERNEL_VERSION ]]; then
-    KERNEL_VERSION="linux-5.10-gen-rkr3.4"
+    KERNEL_VERSION="stable-5.10-rock5"
     echo "Kernel version not explicitly set, using default: ${KERNEL_VERSION}"
     echo "Set the KERNEL_VERSION environment variable to use a different one."
 fi
