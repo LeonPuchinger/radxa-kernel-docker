@@ -5,4 +5,6 @@ RUN apt-get install -y git device-tree-compiler libncurses5 libncurses5-dev buil
 
 RUN mkdir /sdk
 WORKDIR /sdk
-ADD --chmod=777 build.sh build.sh
+ADD --chmod=777 build.sh .
+
+ENTRYPOINT [ "/sdk/build.sh" ]
