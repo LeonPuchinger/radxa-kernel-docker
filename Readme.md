@@ -11,7 +11,7 @@ Instructions on how to customize kernel versions and target hardware can be foun
 ```
 docker build -t radxa-kernel .
 mkdir out
-docker run --rm -it -v out:/sdk/out:ro radxa-kernel
+docker run --rm -it -v $(pwd)/out:/sdk/out:ro radxa-kernel
 ```
 
 The build process fetches the latest sources at runtime, so the image does not have to be rebuilt in order to compile a different version of the kernel.
@@ -27,5 +27,5 @@ The kernel match the branch names in the [Radxa kernel repository](https://githu
 Example:
 
 ```
-docker run --rm -it -v out:/sdk/out:ro -e KERNEL_VERSION=linux-5.10-gen-rkr4.1 radxa-kernel
+docker run --rm -it -v $(pwd)/out:/sdk/out:ro -e KERNEL_VERSION=linux-5.10-gen-rkr4.1 radxa-kernel
 ```
