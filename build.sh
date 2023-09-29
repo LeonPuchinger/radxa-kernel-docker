@@ -15,7 +15,6 @@ fi
 # Build toolchain is fetched at runtime, so the image always uses the latest sources
 
 echo "fetching build sources and toolchain..."
-
 git clone --depth 1 -b ${KERNEL_VERSION} https://github.com/radxa/kernel.git
 git clone --depth 1 -b master https://github.com/radxa/rkbin.git
 git clone --depth 1 -b debian https://github.com/radxa/build.git
@@ -28,6 +27,5 @@ cd -
 echo "starting kernel build..."
 ./build/mk-kernel.sh ${DEVICE}
 
-ls -la
-ls -la /
-ls out/kernel/
+echo "building debian packages for easier installation..."
+./build/pack-kernel.sh -d rockchip_linux_defconfig -r 10
